@@ -72,7 +72,7 @@ public class Scanner {
 				Utils.writeLogFile(logFilePath, errMsg + "\n", true, isCreateLog);
 				ScanResult sc = new ScanResult();
 				sc.setDataID("");
-				sc.setFilepath(logFilePath);
+				//TODO: set the scan file path
 				sc.setBlockedReason(errMsg);
 				results.add(sc);
 			}

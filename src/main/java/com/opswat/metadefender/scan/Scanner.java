@@ -68,8 +68,13 @@ public class Scanner {
 				results.add(sc);
 				Utils.writeLogFile(logFilePath, sc.getFilepath() + " | " + sc.getScanResult() + " | " + sc.getBlockedReason() + "\n", true, isCreateLog);
 			} catch (InterruptedException | ExecutionException | TimeoutException e) {
-				Utils.writeLogFile(logFilePath, "Failed to get scan result - " + e.toString() + "\n", true,
-						isCreateLog);
+				String errMsg = "Failed to get scan result - " + e.toString();
+				Utils.writeLogFile(logFilePath, errMsg + "\n", true, isCreateLog);
+				ScanResult sc = new ScanResult();
+				sc.setDataID("");
+				sc.setFilepath(logFilePath);
+				sc.setBlockedReason(errMsg);
+				results.add(sc);
 			}
 		}
 		executor.shutdown();
